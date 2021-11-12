@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# GSI comment: 
+# Overall: -10 for no docstring
+ 
+# Thus, I fill the docstring for each function
+
 # # [Statistics 507, Fall 2021](https://jbhender.github.io/Stats507/F21/ps/index.html)
 # **Problem Set 1**
 # 
@@ -48,6 +53,20 @@ from scipy import stats
 # Define the Function for rec 
 
 def fib_rec(n):
+'''
+Compute the Fibonacci number
+
+Parameter:
+------------
+n : int
+    The desired Fibonacci number
+
+Return: 
+-----------
+The Fibonacci number
+
+'''
+
     if n==1 or n==2:
         return 1
     else:
@@ -101,6 +120,20 @@ print (fib_rec_list)
 # Define the function of fib_for 
 
 def fib_for(n):
+'''
+Compute the Fibonacci number
+
+Parameter:
+------------
+n : int
+    The desired Fibonacci number
+
+Return:
+-----------
+The Fibonacci number
+
+'''
+
     a,b=0,1
     for i in range (n):
         a,b=b,a+b
@@ -143,6 +176,20 @@ print (fib_for_list)
 # Define the fucntion of fib_while
 
 def fib_while(n):
+'''
+Compute the Fibonacci number
+
+Parameter:
+------------
+n : int
+    The desired Fibonacci number
+
+Return:
+-----------
+The Fibonacci number
+
+'''
+
     a,b=0,1
     index=1
     while index<n:
@@ -187,6 +234,20 @@ print (fib_while_list)
 # Define the function of fib_rnd
 
 def fib_rnd(n):
+'''
+Compute the Fibonacci number
+
+Parameter:
+------------
+n : int
+    The desired Fibonacci number
+
+Return:
+-----------
+The Fibonacci number
+
+'''
+
     return round(((0.5*(1+5**0.5))**n)*(1/(5**0.5)))
 
 # Print the result of 7,11,13
@@ -224,6 +285,20 @@ print (fib_rnd_list)
 # Define the function of fib_floor
 
 def fib_flr(n):
+'''
+Compute the Fibonacci number
+
+Parameter:
+------------
+n : int
+    The desired Fibonacci number
+
+Return:
+-----------
+The Fibonacci number
+
+'''
+
     return math.ceil(((0.5*(1+5**0.5))**n)*(1/(5**0.5)))
 
 # Print the result of 7,11,13
@@ -324,14 +399,38 @@ level=float(input('Enter the confidential Level(In float ex:0.95):'))
 form_string='{0:.2f} [{1}% CI:({2:.3f},{3:.3f})]'
 
 # Define the function to return est,lwr,upr,level
-def None_dictionary(): 
+def None_dictionary():
+'''
+Define the function to return est lwr upr and level
+
+Return:
+----------
+return est lwr upr and level
+
+'''
+ 
     none_dic={'est','lwr','upr','level'}
-    return none_dix
+    return none_dic
 
 
 #Calculate the confidence interval
 def method1(data,level,form_string): 
-    
+'''
+Calculate the confidence interval by Normal theory
+
+Parameter: 
+-------------
+data: array of int
+      for calculate the CI
+level: array of float
+       array of confidence level for calculate confident interval
+form_string: string
+             the format of return 
+
+Return: 
+--------
+return the est lwr upr and confident level with format
+'''    
     try: 
         data=np.array(data)
     except: 
@@ -356,6 +455,22 @@ def method1(data,level,form_string):
 
 
 def method2(data,level,form_string):
+'''
+Calculate the confidence interval by Normal Approxinmation
+
+Parameter:
+-------------
+data: array of int
+      for calculate the CI
+level: array of float
+       array of confidence level for calculate confident interval
+form_string: string
+             the format of return
+
+Return:
+--------
+return the est lwr upr and confident level with format
+'''
     
     try: 
         data=np.array(data)
@@ -380,6 +495,22 @@ def method2(data,level,form_string):
 
 
 def method3(data,level,form_string):
+'''
+Calculate the confidence interval by Clopper-Pearon Interval
+
+Parameter:
+-------------
+data: array of int
+      for calculate the CI
+level: array of float
+       array of confidence level for calculate confident interval
+form_string: string
+             the format of return
+
+Return:
+--------
+return the est lwr upr and confident level with format
+'''
     
     try: 
         data=np.array(data)
@@ -402,6 +533,22 @@ def method3(data,level,form_string):
 
 
 def method4(data,level,form_string):
+'''
+Calculate the confidence interval by Jeffreys Interval
+
+Parameter:
+-------------
+data: array of int
+      for calculate the CI
+level: array of float
+       array of confidence level for calculate confident interval
+form_string: string
+             the format of return
+
+Return:
+--------
+return the est lwr upr and confident level with format
+'''
     
     try: 
         data=np.array(data)
@@ -424,6 +571,22 @@ def method4(data,level,form_string):
 
 
 def method5(data,level,form_string):
+'''
+Calculate the confidence interval by Agresti-Coull Interval
+
+Parameter:
+-------------
+data: array of int
+      for calculate the CI
+level: array of float
+       array of confidence level for calculate confident interval
+form_string: string
+             the format of return
+
+Return:
+--------
+return the est lwr upr and confident level with format
+'''
     
     try: 
         data=np.array(data)
