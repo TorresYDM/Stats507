@@ -191,3 +191,61 @@ ohx.shape
 # ---
 
 # The demographic and dentition datasets just created have 39,156 and 35,909 cases, respectively.
+
+# NHANES demographics 
+demo_file = 'demo.feather'
+demo = pd.read_feather(demo_file)
+
+# NHANES dentition
+ohx_file = 'ohx.feather'
+ohx = pd.read_feather(ohx_file)
+
+# merge dentition exam status into demo
+n0 = demo.shape[0]
+df = pd.merge(demo, ohx[['id', 'dentition_status']], on='id', how='left')
+df.rename(columns={'dentition_status': 'ohx_status'}, inplace=True)
+assert n0 == df.shape[0]
+# missingness
+df['ohx'] = np.logical_and(
+    df['ohx_status'] == 'Complete', 
+    df['exam_status'] == 'Both interviewed and MEC examined'
+)
+df['ohx'] = df['ohx'].replace({True: 'Complete', False: 'Missing'})
+df['ohx'] = pd.Categorical(df['ohx'])
+
+# derived variables
+df['under_20'] = df['age'] < 20
+
+college = ('College graduate or above', 'Some college or AA degree')
+df['college'] = np.logical_or(
+    df['education'].apply(lambda x: x in college).replace({np.nan: False}),
+    df['under_20']
+)
+df['college'] = df['college'].replace(
+    {True: 'Some College/College Graduate',
+     False: 'No College/<20'
+    })
+df['college'] = pd.Categorical(df['college'])
+
+df['under_20'] = (
+    df['under_20']
+    .replace({True: '<20 years old', False: '20+ years old'})
+)
+
+# minimal and derived variables to examine associations
+cols = ['id', 'gender', 'age', 'under_20', 'college', 'exam_status', 'ohx']
+df = df[cols]
+# -
+
+# ## part c) Drop missing already accounted for
+# In this part we drop those whom were interviewed only, as these
+# missing values are already accounted for in the MEC weights.
+
+# drop those not given any medical exams
+df = df.query('exam_status == "Both interviewed and MEC examined"')
+
+
+# ## part d) Balance Table
+# Finally, in this part we construct a table to examine associations
+# between select demographics and a missing oral health (dentition) exam.
+#
