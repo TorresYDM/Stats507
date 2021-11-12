@@ -24,7 +24,7 @@
 #     3. Use bullet points and titles (level 2 headers) to create the equivalent of 3-5 “slides” of key points. They shouldn’t actually be slides, but please structure your key points in a manner similar to the class slides (viewed as a notebook).
 #     4. Include executable example code in code cells to illustrate your topic.
 # You do not need to clear your topic with me. If you want feedback on your topic choice, please discuss with me or a GSI in office hours.
-# Link: 
+# Link: https://github.com/TorresYDM/Stats507/commit/4012df341550b7705a49f5d864f41b50110d89aa 
   
 # ## Contents
 # Add a bullet for each topic and link to the level 2 title header using 
